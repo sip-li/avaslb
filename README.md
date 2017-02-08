@@ -33,10 +33,18 @@ systemctl enable avaslb
 ### Get logs
 ```bash
 # without follow
-docker logs avaslb
+docker logs avaslb.service
 
 # with follow
-docker logs -f avaslb
+docker logs -f avaslb.service
+
+# get logs for the systemd unit supervising the container
+journalctl -f -u avaslb
+```
+
+## Test
+```bash
+curl -v localhost:80
 ```
 
 ## Restart container
