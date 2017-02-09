@@ -66,3 +66,14 @@ systemctl start avaslb
 ```bash
 systemctl disable avaslb
 ```
+
+## Stats
+Goto the following url: [http://localhost/basic_status](http://localhost/basic_status)
+
+```yaml
+Credentials:
+  user: admin
+  pass: <same as docker login>
+```
+
+Stats are really basic on open source nginx and nginx plus is ridiculous. If you need more stats you should use another tool that parses the logs like GoAccess [https://goaccess.io/](https://goaccess.io/)

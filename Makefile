@@ -2,7 +2,7 @@ PROJECT = avaslb
 DOCKER_USER = callforamerica
 IMAGE = $(DOCKER_USER)/$(PROJECT)
 
-.PHONY: build run launch logs rm
+.PHONY: build run launch logs rm shell
 
 build:
 	@docker build -t $(IMAGE) .
@@ -30,3 +30,6 @@ logs:
 
 rm:
 	@docker rm -f $(PROJECT)
+
+shell:
+	@docker exec -ti $(PROJECT) bash
