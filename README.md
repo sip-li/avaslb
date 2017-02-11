@@ -18,6 +18,11 @@ docker login -u callforamerica -p <pass>
 cp avaslb.service /etc/systemd/system/
 ```
 
+### Create the environment file:
+```
+echo "UPSTREAM_AVAS=<ip-address>,<ip-address>,<ip-address>,<ip-address>" >> /etc/default/avaslb.env
+```
+
 ### Start the avaslb.service:
 ```bash
 systemctl start avaslb
@@ -42,32 +47,45 @@ docker logs -f avaslb.service
 journalctl -f -u avaslb
 ```
 
-## Test
+### Test
 ```bash
 curl -v localhost:80
 ```
 
-## Restart container
+### Get status
+```bash
+systemctl status avaslb
+```
+
+### Restart container
 ```bash
 systemctl restart avaslb
 ```
 
-## Stop container
+### Stop container
 ```bash
 systemctl stop avaslb
 ```
 
-## Start container
+### Start container
 ```bash
 systemctl start avaslb
 ```
 
-## Disable from auto starting
+### Disable from auto starting
 ```bash
 systemctl disable avaslb
 ```
 
-## Stats
+### Change the Upstream proxies
+The upstream proxies are read from the environment variable `UPSTREAM_AVAS` of which the value is a comma delimited list of ip addresses or hostnames.
+
+* Edit the systemd unit file: `/etc/systemd/system/avaslb.service`.  On line 15 you'll see `UPSTREAM_AVAS=xxx.xxx.xxx.xxx,xxx.xxx.xxx.xxx,etc`.
+* Reload the units: `systemctl daemon-reload`.
+* Restart the service: `systemctl restart avaslb`.
+* Check that the service is running with no errors: `systemctl status avaslb`
+
+### Stats
 Goto the following url: [http://localhost/basic_status](http://localhost/basic_status)
 
 ```yaml

@@ -1,2 +1,5 @@
 Makefile
 avaslb.service
+.gitignore
+default.env
+README.md

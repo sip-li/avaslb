@@ -12,6 +12,7 @@ ExecStartPre=/usr/bin/docker pull callforamerica/avaslb
 ExecStart=/usr/local/bin/systemd-docker --cgroups name=systemd run \
     --rm --name %n \
     -p "80:80" \
+    --env-file /etc/default/avaslb.env \
     --cap-add NET_ADMIN \
     --cap-add SYS_NICE \
     --cap-add SYS_RESOURCE \

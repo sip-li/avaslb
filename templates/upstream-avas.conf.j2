@@ -1,0 +1,11 @@
+---
+target: /etc/nginx/conf.d/upstream-avas.conf
+owner: nginx
+mode: 644
+---
+
+upstream avas {
+{% for server in env.get('UPSTREAM_AVAS').split(',') %}
+    server {{ server }};
+{% endfor %}
+}
