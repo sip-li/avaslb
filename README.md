@@ -80,8 +80,7 @@ systemctl disable avaslb
 ### Change the Upstream proxies
 The upstream proxies are read from the environment variable `UPSTREAM_AVAS` of which the value is a comma delimited list of ip addresses or hostnames.
 
-* Edit the systemd unit file: `/etc/systemd/system/avaslb.service`.  On line 15 you'll see `UPSTREAM_AVAS=xxx.xxx.xxx.xxx,xxx.xxx.xxx.xxx,etc`.
-* Reload the units: `systemctl daemon-reload`.
+* Edit the environment file: `/etc/default/avaslb.env`.  On the first line you'll see `UPSTREAM_AVAS=xxx.xxx.xxx.xxx,xxx.xxx.xxx.xxx,etc`.
 * Restart the service: `systemctl restart avaslb`.
 * Check that the service is running with no errors: `systemctl status avaslb`
 
